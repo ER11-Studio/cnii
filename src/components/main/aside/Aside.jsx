@@ -31,21 +31,25 @@ export default function Aside() {
   const gesturesCount = gestures?.length;
   const imagesPerPage = 5;
   const [page, setPage] = useState(1);
-  const [colorLeft, setColorLeft] = useState('#3EA2FF');
-  const [colorRight, setColorRight] = useState('#3EA2FF');
+  const [colorLeft, setColorLeft] = useState("#3EA2FF");
+  const [colorRight, setColorRight] = useState("#3EA2FF");
   const startIndex = (page - 1) * imagesPerPage;
   const endIndex = Math.min(gesturesCount, startIndex + imagesPerPage);
 
   const slideBack = () => {
     if (page > 1) setPage((prev) => prev - 1);
-    if (endIndex > 4) {setColorLeft('#630B12')}
+    if (endIndex > 4) {
+      setColorLeft("#630B12");
+    }
   };
 
   const slideForward = () => {
     if (page * imagesPerPage < gesturesCount) setPage((prev) => prev + 1);
-    if (endIndex === 5) {setColorRight('#630B12')}
+    if (endIndex === 5) {
+      setColorRight("#630B12");
+    }
   };
-console.log(endIndex)
+  console.log(endIndex);
 
   return (
     <aside className="h-[670px] w-[420px]">
@@ -72,13 +76,12 @@ console.log(endIndex)
             {gestures && (
               <div className="flex flex-col">
                 {gestures.map((post) => (
-                  <a
-                    href={`/${post.id}`}
+                  <span
                     className="max-w-[190px] cursor-pointer truncate px-2 py-[1.5px] text-[14px] leading-[17px] text-[#728796] transition hover:text-neutral-200"
                     key={post.id}
                   >
                     {post.name}
-                  </a>
+                  </span>
                 ))}
               </div>
             )}
@@ -131,25 +134,25 @@ console.log(endIndex)
           {gestures && (
             <>
               {gestures.slice(startIndex, endIndex).map((post) => (
-                <a key={post.id} href={String(post.id)}>
-                  <div className="flex flex-col gap-[4px]">
-                    <p className="truncate text-[11px] leading-[13px] text-[#C1E1FF] transition hover:opacity-75">
-                      {post.name}
-                    </p>
-                    <img
-                      className="h-[96px]"
-                      src="/src/assets/video.jpg"
-                      alt="Жест"
-                    />
-                  </div>
-                </a>
+                <div key={post.id} className="flex flex-col gap-[4px]">
+                  <p className="truncate text-[11px] leading-[13px] text-[#C1E1FF] transition hover:opacity-75">
+                    {post.name}
+                  </p>
+                  <img
+                    className="h-[96px]"
+                    src="/src/assets/video.jpg"
+                    alt="Жест"
+                  />
+                </div>
               ))}
               <div className="mb-[1px] mt-auto flex items-center justify-between px-[6px]">
                 <button
                   onClick={slideBack}
                   className="transition hover:opacity-75"
                 >
-                  <ChevronLeft className={`h-[18px] w-[18px] text-[${colorLeft}]`} />
+                  <ChevronLeft
+                    className={`h-[18px] w-[18px] text-[${colorLeft}]`}
+                  />
                 </button>
                 <div className="text-[13px] text-[#7a7a7a]">
                   {startIndex + 1}-{endIndex} из {gesturesCount}
@@ -158,7 +161,9 @@ console.log(endIndex)
                   onClick={slideForward}
                   className="transition hover:opacity-75"
                 >
-                  <ChevronRight className={`text-[${colorRight}] h-[18px] w-[18px] `}/>
+                  <ChevronRight
+                    className={`text-[${colorRight}] h-[18px] w-[18px] `}
+                  />
                 </button>
               </div>
             </>
