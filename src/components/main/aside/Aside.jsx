@@ -31,17 +31,21 @@ export default function Aside() {
   const gesturesCount = gestures?.length;
   const imagesPerPage = 5;
   const [page, setPage] = useState(1);
-
+  const [colorLeft, setColorLeft] = useState('#3EA2FF');
+  const [colorRight, setColorRight] = useState('#3EA2FF');
   const startIndex = (page - 1) * imagesPerPage;
   const endIndex = Math.min(gesturesCount, startIndex + imagesPerPage);
 
   const slideBack = () => {
     if (page > 1) setPage((prev) => prev - 1);
+    if (endIndex > 4) {setColorLeft('#630B12')}
   };
 
   const slideForward = () => {
     if (page * imagesPerPage < gesturesCount) setPage((prev) => prev + 1);
+    if (endIndex === 5) {setColorRight('#630B12')}
   };
+console.log(endIndex)
 
   return (
     <aside className="h-[670px] w-[420px]">
@@ -145,7 +149,7 @@ export default function Aside() {
                   onClick={slideBack}
                   className="transition hover:opacity-75"
                 >
-                  <ChevronLeft className="h-[18px] w-[18px] text-[#630B12]" />
+                  <ChevronLeft className={`h-[18px] w-[18px] text-[${colorLeft}]`} />
                 </button>
                 <div className="text-[13px] text-[#7a7a7a]">
                   {startIndex + 1}-{endIndex} из {gesturesCount}
@@ -154,7 +158,7 @@ export default function Aside() {
                   onClick={slideForward}
                   className="transition hover:opacity-75"
                 >
-                  <ChevronRight className="h-[18px] w-[18px] text-[#3EA2FF]" />
+                  <ChevronRight className={`text-[${colorRight}] h-[18px] w-[18px] `}/>
                 </button>
               </div>
             </>

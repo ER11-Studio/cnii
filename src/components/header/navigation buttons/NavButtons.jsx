@@ -29,7 +29,7 @@ export const NavButtons = () => {
         onBlur={handleBlur}
         onInput={handleInput}
         placeholder={placeholderText}
-        className="text-xs text-center w-[150px] h-[38px] bg-[#303339] text-[#728796] outline-none rounded-lg focus:text-start focus:pl-2"></input>
+        className="text-xs text-start pl-4 w-[150px] h-[38px] bg-[#303339] text-[#728796] outline-none rounded-lg focus:text-start focus:pl-4"></input>
         <ul className="flex m-[9px]">
         {iconsRoutes.map((route) => {
             const { href, Icon, title } = route;
